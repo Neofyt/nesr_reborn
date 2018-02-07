@@ -20,10 +20,10 @@
 		<table id="list">
 			<tbody>
 				<tr>
-					<td class="Arpeggio dispo"><p class="selector">Arpeggio</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Arpeggio' id='Arpeggio' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
-					<td class="Capriccio"><p class="selector">Capriccio</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Capriccio' id='Capriccio' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
-					<td class="Cosi"><p class="selector">Cosi</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Cosi' id='Cosi' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
-					<td class="Deca"><p class="selector">Deca</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Deca' id='Deca' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>	
+					<td class="Arpeggio dispo"><p class="selector">Arpeggio</p><p><span class='dec' data-for="Arpeggio">&#8210;</span><span><input type='text' name='Arpeggio' id='Arpeggio' value='0' disabled /></span><span class='inc' data-for="Arpeggio">&#43;</span></p></td>
+					<td class="Capriccio"><p class="selector">Capriccio</p><p><span class='dec' data-for="Capriccio">&#8210;</span><span><input type='text' name='Capriccio' id='Capriccio' value='0' disabled /></span><span class='inc' data-for="Capriccio">&#43;</span></p></td>
+					<td class="Cosi"><p class="selector">Cosi</p><p><span class='dec' data-for="Cosi">&#8210;</span><span><input type='text' name='Cosi' id='Cosi' value='0' disabled /></span><span class='inc' data-for="Cosi">&#43;</span></p></td>
+					<td class="Deca"><p class="selector">Deca</p><p><span class='dec' data-for="Deca">&#8210;</span><span><input type='text' name='Deca' id='Deca' value='0' disabled /></span><span class='inc' data-for="Deca">&#43;</span></p></td>	
 				</tr>
 				<tr>
 					<td class="int"><p class="selector">Deca. int.</p><p><span class='dec'>&#8210;</span><span><input type='text' name='int' id='int' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
@@ -105,12 +105,22 @@
 
 		for (i = 0; i < selectors.length; ++i) {
 			selectors[i].onclick = function(){
-				this.parentNode.toggleClass("selected");
+			//console.log($("#"+this.parentNode.childNodes[1].childNodes[1].childNodes[0].getAttribute("Id")).value);
+			
+				if($("#"+this.parentNode.childNodes[1].childNodes[1].childNodes[0].getAttribute("Id")).value != 0){
+					this.parentNode.toggleClass("selected");
+					toggleSelected(this.parentNode.childNodes[1].childNodes[1].childNodes[0].getAttribute("Id"));
+				} else {
+					this.parentNode.addClass("red");
+					$("#wrapper").addClass("doses");
+					//this.parentNode.childNodes[1].childNodes[2].addClass("red");
+				}
 			}
 		}
 
 		for (i = 0; i < incs.length; ++i) {
 			incs[i].onclick = function(){
+				console.log(this.getAttribute("data-for"));
 				updateCount2(this.parentNode.childNodes[1].childNodes[0].getAttribute("Id"), 1);
 			}
 		}
@@ -121,21 +131,8 @@
 			}
 		}
 
-		var a = true,
-			on = function() {
-				a = false;
-				$("#wrapper").addClass("doses");
-			},
-			off = function() {
-				a = true;
-				$("#wrapper").removeClass("doses");
-			};
-
 		$("#switcher").onclick = function() {
-			if(a) {
-				return on();
-			} 				
-			return off();
+			$("#wrapper").toggleClass("doses");
 		};
 
 		$(".trigger").onclick = function(e) {

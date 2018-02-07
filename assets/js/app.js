@@ -247,6 +247,17 @@ Element.prototype.toggleClass = function(className){
 }
 
 
+Element.prototype.flashClass = function(className){
+	 if (!this.hasClass(className)) {
+        this.addClass(className);
+		//setTimeout(function(){
+			this.removeClass(className);
+		//}, 2000);
+	}
+    return this;
+}
+
+
 
 
 
@@ -273,6 +284,10 @@ function set(coffee, param, val) {
 	save();
 }
 
+function toggleSelected(coffee){
+	get(coffee, "sl") ? set(coffee, "sl", false) : set(coffee, "sl", true);
+}
+
 function rdm() {
 	var selected = [];
 	for (var prop in Nesroulette) {
@@ -292,6 +307,9 @@ function list() {
 			if (Nesroulette[prop].sl) {
 				//coffee.parent().parent().parent().addClass("selected");
 				coffee.parentNode.parentNode.parentNode.addClass("selected");
+			}
+			if (Nesroulette[prop].ds > 0) {
+				coffee.parentNode.parentNode.parentNode.addClass("dispo");
 			}
 		}
 	}
@@ -344,19 +362,22 @@ function updateCount2(item, delta) {
 
 
 	var oldValue = get(item, "ds"),
-		newValue = oldValue + delta;
+		newValue = oldValue + delta, 
+		what = $("#"+item);
 
-
-	set(item, "ds", newValue);
-
-
-	if(newValue == 0){
-		$("#"+item).parentNode.parentNode.parentNode.removeClass("selected");
-		//$("#"+item).parentNode.addClass("hide");
+	if(newValue <= 0){
+		what.parentNode.parentNode.parentNode.removeClass("selected");
+		what.parentNode.parentNode.parentNode.removeClass("dispo");
+		set(item, "ds", 0);
+		what.value = 0;
+		what.parentNode.parentNode.childNodes[0].addClass("hide");
 	} else {
-			$("#"+item).value = newValue;
-
-	}		/*
+			what.value = newValue;
+			set(item, "ds", newValue);
+			what.parentNode.parentNode.childNodes[0].removeClass("hide");
+			what.parentNode.parentNode.parentNode.addClass("dispo");
+			what.parentNode.parentNode.parentNode.removeClass("red");
+}		/*
 		if ($("#"+coffee).hasClass(coffee + " selected") !== true){
 			$("#"+coffee).addClass(coffee + " selected");
 		}*/
@@ -369,7 +390,7 @@ function updateCount2(item, delta) {
 
 
 
-
+save();
 
 
 
@@ -404,7 +425,7 @@ function updateCount2(item, delta) {
 		}
 	}
 
-	save();
+	
 	*/
 }
 

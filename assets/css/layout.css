@@ -4,7 +4,13 @@
 	border: 0;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	box-sizing: border-box
+	box-sizing: border-box;
+	
+	  -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer */
+	   -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+	  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+	  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
 }
 
 body {
@@ -126,6 +132,12 @@ span.dec, span.inc {
 	color: #fff;
 }
 
+.hide {
+	color: transparent !important;
+	cursor: default !important;
+	background-color: transparent !important;
+}
+
 sup {
 	font-size: 12px;
 	padding: 2px 3px;
@@ -134,11 +146,19 @@ sup {
 	color: #fff;
 }
 
+.red {
+	border-color: red !important;
+}
+
+.red .inc {
+	background-color: #ffdfdf !important;
+}
+
 * {
-	transition: all .3s;
-	-moz-transition: all .3s;
-	-webkit-transition: all .3s;
-	-o-transition: all .3s;
+	transition: all .2s;
+	-moz-transition: all .2s;
+	-webkit-transition: all .2s;
+	-o-transition: all .2s;
 }
 
 #switcher {
@@ -313,20 +333,20 @@ sup {
 
 #wrapper td.selected { color : #fff; }
 
-#wrapper td.Livanto.dispo { color: #8E441A; border-color: #8E441A}
-#wrapper td.Roma.dispo { border-color: #403C2E}
+#wrapper td.Livanto.dispo:not(.selected) { color: #8E441A; border-color: #8E441A}
+#wrapper td.Roma.dispo:not(.selected) { border-color: #403C2E; color: #403C2E}
 #wrapper td.Arpeggio.dispo:not(.selected) { color: #5F3E63; border-color: #5F3E63}
-#wrapper td.Ristretto.dispo { border-color: #25281D}
-#wrapper td.int.dispo { border-color: #7C262A}
-#wrapper td.Deca.dispo { border-color: #531912}
-#wrapper td.lun.dispo { border-color: #703022}
-#wrapper td.Fortissio.dispo { border-color: #1D3E2F}
-#wrapper td.Vivalto.dispo { border-color: #334F81}
-#wrapper td.Finezzo.dispo {  border-color: #AF9637}
-#wrapper td.Indriya.dispo { border-color: #56543F}
-#wrapper td.Rosabaya.dispo { border-color: #A66F77}
-#wrapper td.Dulsao.dispo, {  border-color: #977551}
-#wrapper td.Cosi.dispo { border-color: #2A1D13}
-#wrapper td.Volluto.dispo { border-color: #896A2E}
-#wrapper td.Capriccio.dispo { border-color: #384B34}
-#wrapper td.Kazaar.dispo { border-color: #15366C}
+#wrapper td.Ristretto.dispo:not(.selected) { border-color: #25281D; color: #25281D}
+#wrapper td.int.dispo:not(.selected) { border-color: #7C262A; color: #7C262A}
+#wrapper td.Deca.dispo:not(.selected) { border-color: #531912; color: #531912}
+#wrapper td.lun.dispo:not(.selected) { border-color: #703022; color: #703022}
+#wrapper td.Fortissio.dispo:not(.selected) { border-color: #1D3E2F; color: #1D3E2F}
+#wrapper td.Vivalto.dispo:not(.selected) { border-color: #334F81; color: #334F81}
+#wrapper td.Finezzo.dispo:not(.selected) { border-color: #AF9637; color: #AF9637}
+#wrapper td.Indriya.dispo:not(.selected) { border-color: #56543F; color: #56543F}
+#wrapper td.Rosabaya.dispo:not(.selected) { border-color: #A66F77}
+#wrapper td.Dulsao.dispo:not(.selected) { border-color: #977551; border-color: #977551}
+#wrapper td.Cosi.dispo:not(.selected) { border-color: #2A1D13; color: #2A1D13}
+#wrapper td.Volluto.dispo:not(.selected) { border-color: #896A2E; color: #896A2E}
+#wrapper td.Capriccio.dispo:not(.selected) { border-color: #384B34; color: #384B34}
+#wrapper td.Kazaar.dispo:not(.selected) { border-color: #15366C; color: #15366C}
