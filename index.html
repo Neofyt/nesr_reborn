@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Nesroulette...</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+	<!--<link rel="shortcut icon" href="favicon.ico" />-->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu:300"/>
+	
+	<link rel="stylesheet" href="assets/css/layout.css">
+</head>
+
+<body>
+	
+	<div id="wrapper">
+		
+		<h1>Nesroulette <sup>beta</sup></h1>
+		<div id="switcher">
+			<div class="knob"></div>
+		</div>
+		<table id="list">
+			<tbody>
+				<tr>
+					<td class="Arpeggio dispo"><p class="selector">Arpeggio</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Arpeggio' id='Arpeggio' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Capriccio"><p class="selector">Capriccio</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Capriccio' id='Capriccio' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Cosi"><p class="selector">Cosi</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Cosi' id='Cosi' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Deca"><p class="selector">Deca</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Deca' id='Deca' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>	
+				</tr>
+				<tr>
+					<td class="int"><p class="selector">Deca. int.</p><p><span class='dec'>&#8210;</span><span><input type='text' name='int' id='int' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="lun dispo"><p class="selector">Deca. lun.</p><p><span class='dec'>&#8210;</span><span><input type='text' name='lun' id='lun' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Dulsao"><p class="selector">Dulsao</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Dulsao' id='Dulsao' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Finezzo"><p class="selector">Finezzo</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Finezzo' id='Finezzo' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>	
+				</tr>
+				<tr>
+					<td class="Fortissio"><p class="selector">Fortissio</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Fortissio' id='Fortissio' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Indriya"><p class="selector">Indriya</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Indriya' id='Indriya' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Livanto"><p class="selector">Livanto</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Livanto' id='Livanto' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Ristretto"><p class="selector">Ristretto</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Ristretto' id='Ristretto' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>	
+				</tr>
+				<tr>
+					<td class="Roma"><p class="selector">Roma</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Roma' id='Roma' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Rosabaya"><p class="selector">Rosabaya</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Rosabaya' id='Rosabaya' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Vivalto"><p class="selector">Vivalto</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Vivalto' id='Vivalto' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="Volluto"><p class="selector">Volluto</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Volluto' id='Volluto' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>	
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="4" class="trigger">Pick one ...</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	
+	<!-- Result panel -->
+	<div id="verdict" class="Vivalto">
+		
+		<div id="wrapVerdict">
+			<div id="close"><span>Cancel </span>&#10005;</div>
+			<h1>Vivalto <span>short with sugar</span></h1>
+			<table id="scale">
+				<thead>
+					<tr>
+						<th colspan="2"></th>
+						<th>1</th>
+						<th colspan="8">Strength</th>
+						<th id="th10">10</th>
+						<th></th>
+						<th id="th12"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="nob"></td>
+						<td class="nob"></td>
+						<td id="sc1"></td>
+						<td id="sc2"></td>
+						<td id="sc3"></td>
+						<td id="sc4"></td>
+						<td id="sc5"></td>
+						<td id="sc6"></td>
+						<td id="sc7"></td>
+						<td id="sc8"></td>
+						<td id="sc9"></td>
+						<td id="sc10"></td>
+						<td id="sc11" class="nob"></td>
+						<td id="sc12" class="nob"></td>
+					</tr>
+				<tbody>
+			</table>
+			<div id="boutons">
+				<a href="#" class="button trigger">Pick another</a>
+				<a href="#" class="button" id="takeThisOne">Take this  one</a>
+			</div>
+		</div>
+	</div><!-- #verdict -->
+
+	<canvas></canvas>
+	
+	<script src="assets/js/app.js"></script>
+	<script>
+		var selectors = $$('.selector'),
+			incs = $$('.inc'),
+			decs = $$('.dec');
+
+		for (i = 0; i < selectors.length; ++i) {
+			selectors[i].onclick = function(){
+				this.parentNode.toggleClass("selected");
+			}
+		}
+
+		for (i = 0; i < incs.length; ++i) {
+			incs[i].onclick = function(){
+				updateCount2(this.parentNode.childNodes[1].childNodes[0].getAttribute("Id"), 1);
+			}
+		}
+
+		for (i = 0; i < decs.length; ++i) {
+			decs[i].onclick = function(){
+				updateCount2(this.parentNode.childNodes[1].childNodes[0].getAttribute("Id"), -1);
+			}
+		}
+
+		var a = true,
+			on = function() {
+				a = false;
+				$("#wrapper").addClass("doses");
+			},
+			off = function() {
+				a = true;
+				$("#wrapper").removeClass("doses");
+			};
+
+		$("#switcher").onclick = function() {
+			if(a) {
+				return on();
+			} 				
+			return off();
+		};
+
+		$(".trigger").onclick = function(e) {
+			e.preventDefault();
+			chooseOne();
+		};
+
+	</script>
+	
+</body>
+</html>
