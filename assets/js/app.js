@@ -4,57 +4,57 @@ var d = document,
 	StorageName = "Nesroulette",
 	Nesroulette = {
 		Arpeggio: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		Capriccio: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		Cosi: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		Deca: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		int: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		lun: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		Dulsao: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		Finezzo: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		Fortissio: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		Indriya: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
 		Livanto: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
@@ -69,7 +69,7 @@ var d = document,
 			dk: 0
 		},
 		Rosabaya: {
-			sl: true,
+			sl: false,
 			ds: 0,
 			dk: 0
 		},
@@ -157,12 +157,14 @@ var d = document,
 
 	canvas.width = canvas.height = 16;
 
+	w.previous = "";
+
 
 // ============
 // HELPERS
 // ============
 
-function $(expr) { return d.body.querySelector(expr); }
+function $(expr) { return d.querySelector(expr); }
 function $$(expr) { return d.body.querySelectorAll(expr); }
 
 // Browser sniffing
@@ -284,8 +286,13 @@ function set(coffee, param, val) {
 	save();
 }
 
+/*
 function toggleSelected(coffee){
 	get(coffee, "sl") ? set(coffee, "sl", false) : set(coffee, "sl", true);
+}*/
+
+function toggleSelected(coffee){
+	set(coffee, "sl", !get(coffee, "sl"));
 }
 
 function rdm() {
@@ -366,8 +373,8 @@ function updateCount2(item, delta) {
 		what = $("#"+item);
 
 	if(newValue <= 0){
-		what.parentNode.parentNode.parentNode.removeClass("selected");
-		what.parentNode.parentNode.parentNode.removeClass("dispo");
+		what.parentNode.parentNode.parentNode.removeClass("selected").removeClass("dispo");
+		//what.parentNode.parentNode.parentNode;
 		set(item, "ds", 0);
 		what.value = 0;
 		what.parentNode.parentNode.childNodes[0].addClass("hide");
@@ -375,8 +382,8 @@ function updateCount2(item, delta) {
 			what.value = newValue;
 			set(item, "ds", newValue);
 			what.parentNode.parentNode.childNodes[0].removeClass("hide");
-			what.parentNode.parentNode.parentNode.addClass("dispo");
-			what.parentNode.parentNode.parentNode.removeClass("red");
+			what.parentNode.parentNode.parentNode.addClass("dispo").removeClass("red");
+			//what.parentNode.parentNode.parentNode;
 }		/*
 		if ($("#"+coffee).hasClass(coffee + " selected") !== true){
 			$("#"+coffee).addClass(coffee + " selected");
@@ -432,8 +439,15 @@ save();
 
 
 function chooseOne() {
+console.log(1);
+
+	$("#verdict").removeClass(w.previous);
+
 	var coffee = rdm(), 
-		coffeeName;
+		coffeeName,
+		tds = $$("#scale td");
+
+	w.previous = coffee;
 
 	if(coffee){
 
@@ -448,18 +462,27 @@ function chooseOne() {
 				coffeeName = coffee;
 		}
 
-		$("#scale td").removeClass("selected");
-
+		for (i = 0; i < tds.length; ++i) {
+			tds[i].removeClass("selected");
+		}
+		
 		window.location.hash = coffee;
-		var color = settings[coffee].color;
+		//var color = settings[coffee].color;
 
-		$("#verdict").css({"display": "block", "background": color})
-			.find("h1")
-			.html(coffeeName + " <span>" + doses[Math.floor(Math.random()*doses.length)] + " " + sugar[Math.floor(Math.random()*sugar.length)] + " sugar</span>");
+		//$("#verdict").css({"display": "block", "background": color})
+		
+		//$("#verdict").setAttribute("display","block");
+		
+		$("#verdict").removeClass("none");
+		$("#verdict").addClass(coffee);
+
+		//$("#verdict").setAttribute("background",color);
+		$("#titleVerdict").innerHTML = coffeeName + " <span>" + doses[Math.floor(Math.random()*doses.length)] + " " + sugar[Math.floor(Math.random()*sugar.length)] + " sugar</span>";
 
 		$("#sc" + settings[coffee].st).addClass("selected");
 
 		//drawFavicon(color);
+		drawFavicon(settings[coffee].color);
 
 	} else {
 		displayMessage('Please pick your coffees first !!', '#ffdfdf', 'red', true, 'none');
@@ -472,7 +495,20 @@ function drawFavicon(color){
 	ctx.fillStyle = color;
 	ctx.clearRect(0, 0, 16, 16);
 	ctx.fillRect(0, 0, 16, 16);
-	$('link[rel="shortcut icon"]').prop('href', canvas.toDataURL());
+
+	if (browser.chrome){
+		$('[rel="shortcut icon"]').setAttribute("href", canvas.toDataURL());
+	} else {
+		var link = d.createElement('link'),
+			oldLink = $('[rel="shortcut icon"]');
+		link.type = "image/png";
+		link.rel = "shortcut icon";
+		link.href = canvas.toDataURL();
+		if (oldLink) {
+			d.head.removeChild(oldLink);
+		}
+		d.head.appendChild(link);
+	}
 }
 
 

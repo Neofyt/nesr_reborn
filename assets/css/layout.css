@@ -6,11 +6,16 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	
-	  -moz-user-select: none; /* Firefox */
-      -ms-user-select: none; /* Internet Explorer */
-	   -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
-	  -webkit-user-select: none; /* Chrome, Safari, and Opera */
-	  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+	-moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+	-khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+	-webkit-user-select: none; /* Chrome, Safari, and Opera */
+	-webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+
+	transition: all .2s;
+	-moz-transition: all .2s;
+	-webkit-transition: all .2s;
+	-o-transition: all .2s;
 }
 
 body {
@@ -92,6 +97,10 @@ h1 {
 	height: 30px;
 }
 
+canvas {
+	display: none;
+}
+
 input {
 	width: 30px;
 	height: 22px;
@@ -105,17 +114,22 @@ span.dec, span.inc {
 	height: 30px;
 	line-height: 30px;
 	padding: 0 4px;
-	color: #fff;
+	color: transparent;
 	cursor: pointer;
 	border: solid 1px transparent;
 	border-radius: 5px;
 }
 
-#wrapper td:not(.selected):hover span.dec, td:not(.selected):hover span.inc {
+/*#wrapper td:not(.selected):not(.red):hover span.dec, td:not(.selected):hover span.inc {*/
+#wrapper td.dispo:hover span.dec, td:not(.selected):hover span.inc {
 	color: #666;
 }
 
-#wrapper td:hover span.dec:hover, td:hover span.inc:hover {
+#wrapper td.selected:hover span.dec, #wrapper td.selected:not(.red):hover span.inc {
+	color: #fff;
+}
+
+#wrapper td:not(.red):hover span.dec:hover, td:hover span.inc:hover {
 	background: #eee;
 	color: #666;
 	border-radius: 5px;
@@ -138,6 +152,10 @@ span.dec, span.inc {
 	background-color: transparent !important;
 }
 
+.none {
+	display: none;
+}
+
 sup {
 	font-size: 12px;
 	padding: 2px 3px;
@@ -154,12 +172,7 @@ sup {
 	background-color: #ffdfdf !important;
 }
 
-* {
-	transition: all .2s;
-	-moz-transition: all .2s;
-	-webkit-transition: all .2s;
-	-o-transition: all .2s;
-}
+
 
 #switcher {
 	position: relative;
@@ -208,7 +221,6 @@ sup {
 	height: 100%;
 	top: 0;
 	left: 0;
-	display: none;
 	z-index: 11;
 	/*background: #fff;*/
 }

@@ -3,7 +3,9 @@
 <head>
 	<title>Nesroulette...</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
-	<!--<link rel="shortcut icon" href="favicon.ico" />-->
+
+	<link rel="shortcut icon" href="about:blank" />
+	<!--<link rel="shortcut icon" id="icon" type="image/png" href="about:blank" />-->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu:300"/>
 	
 	<link rel="stylesheet" href="assets/css/layout.css">
@@ -20,14 +22,14 @@
 		<table id="list">
 			<tbody>
 				<tr>
-					<td class="Arpeggio dispo"><p class="selector">Arpeggio</p><p><span class='dec' data-for="Arpeggio">&#8210;</span><span><input type='text' name='Arpeggio' id='Arpeggio' value='0' disabled /></span><span class='inc' data-for="Arpeggio">&#43;</span></p></td>
+					<td class="Arpeggio"><p class="selector">Arpeggio</p><p><span class='dec' data-for="Arpeggio">&#8210;</span><span><input type='text' name='Arpeggio' id='Arpeggio' value='0' disabled /></span><span class='inc' data-for="Arpeggio">&#43;</span></p></td>
 					<td class="Capriccio"><p class="selector">Capriccio</p><p><span class='dec' data-for="Capriccio">&#8210;</span><span><input type='text' name='Capriccio' id='Capriccio' value='0' disabled /></span><span class='inc' data-for="Capriccio">&#43;</span></p></td>
 					<td class="Cosi"><p class="selector">Cosi</p><p><span class='dec' data-for="Cosi">&#8210;</span><span><input type='text' name='Cosi' id='Cosi' value='0' disabled /></span><span class='inc' data-for="Cosi">&#43;</span></p></td>
 					<td class="Deca"><p class="selector">Deca</p><p><span class='dec' data-for="Deca">&#8210;</span><span><input type='text' name='Deca' id='Deca' value='0' disabled /></span><span class='inc' data-for="Deca">&#43;</span></p></td>	
 				</tr>
 				<tr>
 					<td class="int"><p class="selector">Deca. int.</p><p><span class='dec'>&#8210;</span><span><input type='text' name='int' id='int' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
-					<td class="lun dispo"><p class="selector">Deca. lun.</p><p><span class='dec'>&#8210;</span><span><input type='text' name='lun' id='lun' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
+					<td class="lun"><p class="selector">Deca. lun.</p><p><span class='dec'>&#8210;</span><span><input type='text' name='lun' id='lun' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
 					<td class="Dulsao"><p class="selector">Dulsao</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Dulsao' id='Dulsao' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>
 					<td class="Finezzo"><p class="selector">Finezzo</p><p><span class='dec'>&#8210;</span><span><input type='text' name='Finezzo' id='Finezzo' value='0' disabled /></span><span class='inc'>&#43;</span></p></td>	
 				</tr>
@@ -53,11 +55,11 @@
 	</div>
 	
 	<!-- Result panel -->
-	<div id="verdict" class="Vivalto">
+	<div id="verdict" class="none">
 		
 		<div id="wrapVerdict">
 			<div id="close"><span>Cancel </span>&#10005;</div>
-			<h1>Vivalto <span>short with sugar</span></h1>
+			<h1 id="titleVerdict">Vivalto <span>short with sugar</span></h1>
 			<table id="scale">
 				<thead>
 					<tr>
@@ -89,7 +91,7 @@
 				<tbody>
 			</table>
 			<div id="boutons">
-				<a href="#" class="button trigger">Pick another</a>
+				<a href="#" class="trigger button">Pick another</a>
 				<a href="#" class="button" id="takeThisOne">Take this  one</a>
 			</div>
 		</div>
@@ -97,11 +99,12 @@
 
 	<canvas></canvas>
 	
-	<script src="assets/js/app.js"></script>
+	<script src="assets/js/app.js"></script>	
 	<script>
 		var selectors = $$('.selector'),
 			incs = $$('.inc'),
-			decs = $$('.dec');
+			decs = $$('.dec'),
+			trg = $$('.trigger');
 
 		for (i = 0; i < selectors.length; ++i) {
 			selectors[i].onclick = function(){
@@ -131,14 +134,25 @@
 			}
 		}
 
+		for (i = 0; i < trg.length; ++i) {
+			trg[i].onclick = function(e){
+				e.preventDefault();
+				console.log(3);
+				chooseOne();
+			}
+		}
+
 		$("#switcher").onclick = function() {
 			$("#wrapper").toggleClass("doses");
 		};
 
-		$(".trigger").onclick = function(e) {
-			e.preventDefault();
+		/*$(".trigger").onclick = function(e) {
+			console.log(2);
+			//e.preventDefault();
+						console.log(3);
+
 			chooseOne();
-		};
+		};*/
 
 	</script>
 	
